@@ -8,6 +8,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
@@ -28,9 +31,19 @@ public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
     public void surfaceCreated(SurfaceHolder holder) {
         Camera.Parameters params = camera.getParameters();
         List<Camera.Size> sizes = params.getSupportedPictureSizes();
+        Collections.sort(sizes, new Comparator<Camera.Size>() {
+
+            public int compare(final Camera.Size a, final Camera.Size b) {
+                return a.width * a.height - b.width * b.height;
+            }
+        });
+
+
+
+
         int tempWidth = 600;
-//        Camera.Size mSize = sizes.get(0);
-        Camera.Size mSize = sizes.get(sizes.size()-1);
+        Camera.Size mSize = sizes.get(0);
+//        Camera.Size  nmSize = sizes.get(sizes.size()-1);
 
         if (params.getSupportedFocusModes().contains(
                 Camera.Parameters.FOCUS_MODE_CONTINUOUS_VIDEO)) {

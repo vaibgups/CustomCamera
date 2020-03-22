@@ -42,6 +42,10 @@ public class ShowCamera extends SurfaceView implements SurfaceHolder.Callback {
 
 
 
+
+
+
+
         int tempWidth = 600;
         Camera.Size mSize = sizes.get(0);
 //        Camera.Size  nmSize = sizes.get(sizes.size()-1);
